@@ -1,0 +1,69 @@
+# Original by Chris & Zach
+# Modified by Doug Hyde, 1/19/2009
+# You must change the paths to GL and FLTK to match your system's configuration
+
+CXX   = g++ -m32
+GLDIR = /System/Library/Frameworks/OpenGL.framework/Libraries/
+
+# Personal Machine
+FLTKINCDIR = /usr/local/include/
+FLTKLIBDIR = /usr/local/lib/
+
+OBJDIR = ../objs/
+
+MAINOBJ = $(OUTDIR)main.o $(OUTDIR)GLWindow.o $(OUTDIR)ShellInterface.o $(OUTDIR)UIInterface.o
+VECMATHOBJ = $(OUTDIR)ScreenVector.o $(OUTDIR)ScreenPoint.o $(OUTDIR)Vector3.o $(OUTDIR)Point3.o $(OUTDIR)Matrix3.o $(OUTDIR)Vector4.o $(OUTDIR)Matrix4.o
+BRUSHOBJ = $(OUTDIR)MyBrush_UI.o $(OUTDIR)MyBrush.o  $(OUTDIR)BrushInterface.o 
+SHAPESOBJ = $(OUTDIR)ShapesInterface.o $(OUTDIR)ShapesUI.o
+CAMERAOBJ = $(OUTDIR)CameraInterface.o $(OUTDIR)CameraUI.o $(OUTDIR)IBar.o $(OUTDIR)Camera.o
+SCENEOBJ = $(OUTDIR)SceneviewInterface.o $(OUTDIR)SceneviewUI.o $(OUTDIR)MyScene.o $(OUTDIR)MyScene_draw.o 
+INTERSECTOBJ  = $(OUTDIR)IntersectionInterface.o $(OUTDIR)IntersectionUI.o
+USEROBJ =  $(OUTDIR)InteractiveInterface.o $(OUTDIR)InteractiveUI.o $(OUTDIR)InteractiveWidget.o $(OUTDIR)MyScene_select.o 
+RENDEROBJ = $(OUTDIR)MyScene_render.o $(OUTDIR)RenderingUI.o $(OUTDIR)RenderingInterface.o
+
+OBJ = $(MAINOBJ) $(VECMATHOBJ) $(RENDEROBJ)  $(USEROBJ)  $(SCENEOBJ) $(INTERSECTOBJ) $(SHAPESOBJ) $(CAMERAOBJ) $(BRUSHOBJ)
+
+LIBS =  -L$(GLDIR) -L$(FLTKLIBDIR) -lfltk -lfltk_gl -lfltk_images -lfltk_forms -lfltk_jpeg -lGLU -lGL -lpng
+INCS =  -I$(FLTKINCDIR) -I/usr/X11R6/include -I. -I./vecmath
+
+BIN = cse452shell
+CXXFLAGS = $(INCS) -DLINUX -s -Wall -ansi -pedantic 
+LDFLAGS = $(INCS) -DLINUX -s -Wall -ansi -pedantic -framework Carbon -framework AGL
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before cse452shell all-after
+
+
+clean: clean-custom
+	rm -f $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CXX) $(OBJ) -o "cse452shell" $(LIBS) $(LDFLAGS)
+
+$(MAINOBJ): $(OUTDIR)%.o: %.cpp cse452.h
+	$(CXX) -c $(CXXFLAGS) $< -o $@
+
+$(VECMATHOBJ): $(OUTDIR)%.o: vecmath/%.cpp 
+	$(CXX) -c $(CXXFLAGS) $< -o $@
+
+$(BRUSHOBJ): $(OUTDIR)%.o: brush/%.cpp
+	$(CXX) -c $(CXXFLAGS) $< -o $@
+
+$(SHAPESOBJ): $(OUTDIR)%.o: shapes/%.cpp
+	$(CXX) -c $(CXXFLAGS) $< -o $@
+
+$(CAMERAOBJ): $(OUTDIR)%.o: camera/%.cpp
+	$(CXX) -c $(CXXFLAGS) $< -o $@
+
+$(SCENEOBJ): $(OUTDIR)%.o: sceneview/%.cpp
+	$(CXX) -c $(CXXFLAGS) $< -o $@
+
+$(INTERSECTOBJ): $(OUTDIR)%.o: intersection/%.cpp
+	$(CXX) -c $(CXXFLAGS) $< -o $@
+
+$(USEROBJ): $(OUTDIR)%.o: interactive/%.cpp
+	$(CXX) -c $(CXXFLAGS) $< -o $@
+
+$(RENDEROBJ): $(OUTDIR)%.o: rendering/%.cpp
+	$(CXX) -c $(CXXFLAGS) $< -o $@

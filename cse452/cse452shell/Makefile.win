@@ -1,0 +1,98 @@
+# Project: FLTK Project
+# Makefile created by Dev-C++ 4.9.9.0
+
+CPP  = g++.exe
+CC   = gcc.exe
+WINDRES = windres.exe
+RES  = cse452shell_private.res
+OBJ  = ../objs/main.o ../objs/gl_window.o ../objs/brush_ui.o ../objs/my_brush.o ../objs/shapes_ui.o ../objs/shape.o ../objs/draw_routines.o ../objs/camera_ui.o ../objs/my_camera.o ../objs/sceneview_ui.o ../objs/my_scene.o ../objs/intersection_ui.o ../objs/my_scene_object.o ../objs/my_scene_light.o ../objs/my_scene_node.o ../objs/my_scene_tree.o ../objs/my_scene_mastersubgraphs.o ../objs/my_scene_first_hit_record.o ../objs/user_interface_ui.o ../objs/my_scene_draw.o ../objs/my_scene_select.o ../objs/rendering_ui.o ../objs/my_scene_render.o $(RES)
+LINKOBJ  = ../objs/main.o ../objs/gl_window.o ../objs/brush_ui.o ../objs/my_brush.o ../objs/shapes_ui.o ../objs/shape.o ../objs/draw_routines.o ../objs/camera_ui.o ../objs/my_camera.o ../objs/sceneview_ui.o ../objs/my_scene.o ../objs/intersection_ui.o ../objs/my_scene_object.o ../objs/my_scene_light.o ../objs/my_scene_node.o ../objs/my_scene_tree.o ../objs/my_scene_mastersubgraphs.o ../objs/my_scene_first_hit_record.o ../objs/user_interface_ui.o ../objs/my_scene_draw.o ../objs/my_scene_select.o ../objs/rendering_ui.o ../objs/my_scene_render.o $(RES)
+LIBS =  -L"C:/Program Files/Dev-Cpp/lib" -mwindows -lfltk -lfltk_gl -lfltk_images -lopengl32 -lglu32 -lole32 -luuid -lcomctl32 -lwsock32 -lm -lpng -lz -ljpeg -mconsole  
+INCS =  -I"C:/Program Files/Dev-Cpp/include"  -I"C:/temp/Assignments/include" 
+CXXINCS =  -I"C:/Program Files/Dev-Cpp/include/c++/3.3.1"  -I"C:/Program Files/Dev-Cpp/include/c++/3.3.1/mingw32"  -I"C:/Program Files/Dev-Cpp/include/c++/3.3.1/backward"  -I"C:/Program Files/Dev-Cpp/lib/gcc-lib/mingw32/3.3.1/include"  -I"C:/Program Files/Dev-Cpp/include"  -I"C:/temp/Assignments/include" 
+BIN  = cse452shell.exe
+CXXFLAGS = $(CXXINCS) -DWIN32 -W -Wall -Wno-long-long -Wno-unused   -fexpensive-optimizations -O3
+CFLAGS = $(INCS) -DWIN32 -fnative-struct   -fexpensive-optimizations -O3
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before cse452shell.exe all-after
+
+
+clean: clean-custom
+	rm -f $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o "cse452shell.exe" $(LIBS)
+
+../objs/main.o: main.cpp
+	$(CPP) -c main.cpp -o ../objs/main.o $(CXXFLAGS)
+
+../objs/gl_window.o: gl_window.cpp
+	$(CPP) -c gl_window.cpp -o ../objs/gl_window.o $(CXXFLAGS)
+
+../objs/brush_ui.o: brush/brush_ui.cpp
+	$(CPP) -c brush/brush_ui.cpp -o ../objs/brush_ui.o $(CXXFLAGS)
+
+../objs/my_brush.o: brush/my_brush.cpp
+	$(CPP) -c brush/my_brush.cpp -o ../objs/my_brush.o $(CXXFLAGS)
+
+../objs/shapes_ui.o: shapes/shapes_ui.cpp
+	$(CPP) -c shapes/shapes_ui.cpp -o ../objs/shapes_ui.o $(CXXFLAGS)
+
+../objs/shape.o: shapes/shape.cpp
+	$(CPP) -c shapes/shape.cpp -o ../objs/shape.o $(CXXFLAGS)
+
+../objs/draw_routines.o: draw_routines.cpp
+	$(CPP) -c draw_routines.cpp -o ../objs/draw_routines.o $(CXXFLAGS)
+
+../objs/camera_ui.o: camera/camera_ui.cpp
+	$(CPP) -c camera/camera_ui.cpp -o ../objs/camera_ui.o $(CXXFLAGS)
+
+../objs/my_camera.o: camera/my_camera.cpp
+	$(CPP) -c camera/my_camera.cpp -o ../objs/my_camera.o $(CXXFLAGS)
+
+../objs/sceneview_ui.o: sceneview/sceneview_ui.cpp
+	$(CPP) -c sceneview/sceneview_ui.cpp -o ../objs/sceneview_ui.o $(CXXFLAGS)
+
+../objs/my_scene.o: sceneview/my_scene.cpp
+	$(CPP) -c sceneview/my_scene.cpp -o ../objs/my_scene.o $(CXXFLAGS)
+
+../objs/intersection_ui.o: intersection/intersection_ui.cpp
+	$(CPP) -c intersection/intersection_ui.cpp -o ../objs/intersection_ui.o $(CXXFLAGS)
+
+../objs/my_scene_object.o: sceneview/my_scene_object.cpp
+	$(CPP) -c sceneview/my_scene_object.cpp -o ../objs/my_scene_object.o $(CXXFLAGS)
+
+../objs/my_scene_light.o: sceneview/my_scene_light.cpp
+	$(CPP) -c sceneview/my_scene_light.cpp -o ../objs/my_scene_light.o $(CXXFLAGS)
+
+../objs/my_scene_node.o: sceneview/my_scene_node.cpp
+	$(CPP) -c sceneview/my_scene_node.cpp -o ../objs/my_scene_node.o $(CXXFLAGS)
+
+../objs/my_scene_tree.o: sceneview/my_scene_tree.cpp
+	$(CPP) -c sceneview/my_scene_tree.cpp -o ../objs/my_scene_tree.o $(CXXFLAGS)
+
+../objs/my_scene_mastersubgraphs.o: sceneview/my_scene_mastersubgraphs.cpp
+	$(CPP) -c sceneview/my_scene_mastersubgraphs.cpp -o ../objs/my_scene_mastersubgraphs.o $(CXXFLAGS)
+
+../objs/my_scene_first_hit_record.o: user_interface/my_scene_first_hit_record.cpp
+	$(CPP) -c user_interface/my_scene_first_hit_record.cpp -o ../objs/my_scene_first_hit_record.o $(CXXFLAGS)
+
+../objs/user_interface_ui.o: user_interface/user_interface_ui.cpp
+	$(CPP) -c user_interface/user_interface_ui.cpp -o ../objs/user_interface_ui.o $(CXXFLAGS)
+
+../objs/my_scene_draw.o: sceneview/my_scene_draw.cpp
+	$(CPP) -c sceneview/my_scene_draw.cpp -o ../objs/my_scene_draw.o $(CXXFLAGS)
+
+../objs/my_scene_select.o: user_interface/my_scene_select.cpp
+	$(CPP) -c user_interface/my_scene_select.cpp -o ../objs/my_scene_select.o $(CXXFLAGS)
+
+../objs/rendering_ui.o: rendering/rendering_ui.cpp
+	$(CPP) -c rendering/rendering_ui.cpp -o ../objs/rendering_ui.o $(CXXFLAGS)
+
+../objs/my_scene_render.o: rendering/my_scene_render.cpp
+	$(CPP) -c rendering/my_scene_render.cpp -o ../objs/my_scene_render.o $(CXXFLAGS)
+
+cse452shell_private.res: cse452shell_private.rc 
+	$(WINDRES) -i cse452shell_private.rc -I rc -o cse452shell_private.res -O coff 
